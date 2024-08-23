@@ -1,5 +1,6 @@
 package com.example.newssite.repository
 
+import android.util.Log
 import androidx.room.Query
 import com.example.newssite.api.RetrofitInstance
 import com.example.newssite.db.articleDatabase
@@ -14,8 +15,12 @@ class NewsRepository(val db: articleDatabase) {
     suspend fun searchForNews(searchQuery: String, pageNumber: Int) =
         RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
 
-    suspend fun upsert(article: Article) = db.getArticleDAO().upsert(article)
+    suspend fun insertArticle(article: Article) = db.getArticleDAO().insert(article)
 
+//    suspend fun insertArticle(article: Article){
+//
+//        db.getArticleDAO().insert(article)
+//    }
     fun getFavouritesNews() = db.getArticleDAO().getAllArticles()
 
     suspend fun deleteArticles(article: Article) = db.getArticleDAO().deleteArticle(article)

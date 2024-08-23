@@ -78,7 +78,7 @@ class NewsViewModel(val newsRepository: NewsRepository) : ViewModel() {
     }
 
     fun addToFavourites(article: Article) = viewModelScope.launch {
-        newsRepository.upsert(article)
+        newsRepository.insertArticle(article)
     }
 
     fun getFavouriteNews() = newsRepository.getFavouritesNews()

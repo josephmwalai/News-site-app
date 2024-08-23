@@ -32,7 +32,7 @@ class ArticleFragment : Fragment(R.layout.fragment_article) {
             }
         }
         binding.fab.setOnClickListener {
-            newsViewModel.addToFavourites(article)
+           newsViewModel.addToFavourites(article)
             Snackbar.make(view, "Added to favourites", Snackbar.LENGTH_LONG).show()
         }
     }

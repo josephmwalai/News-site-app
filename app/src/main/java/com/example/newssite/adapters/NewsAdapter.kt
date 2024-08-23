@@ -1,12 +1,16 @@
 package com.example.newssite.adapters
 
 import android.media.Image
+import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.appcompat.view.menu.MenuView.ItemView
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
@@ -57,22 +61,25 @@ class NewsAdapter: RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
         articleDescription = holder.itemView.findViewById(R.id.articleDescription)
         articleDateTime = holder.itemView.findViewById(R.id.articleDateTime)
 
+
         holder.itemView.apply {
-            Glide.with(this).load(article.urlToImage).into(articleImage)
+         Glide.with(this).load(article.urlToImage).into(articleImage)
 
             articleSource.text = article.source?.name
             articleTitle.text = article.title
             articleDescription.text = article.description
             articleDateTime.text = article.publishedAt
 
+
+
             setOnClickListener {
                 onItemClickListener?.let {
-                    it(article)
+               it(article)
                 }
             }
         }
     }
-    fun setOnItemClickListener(Listener: (Article) -> Unit) {
+   fun setOnItemClickListener(Listener: (Article) -> Unit) {
         onItemClickListener = Listener
     }
 }

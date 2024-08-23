@@ -10,7 +10,7 @@ import com.example.newssite.models.Article
 
 @Database(
     entities = [Article::class],
-    version = 2
+    version = 4
 )
 @TypeConverters(Converters::class)
 abstract class articleDatabase: RoomDatabase() {
@@ -22,7 +22,7 @@ abstract class articleDatabase: RoomDatabase() {
         private val LOCK = Any()
         private fun createDatabase(context: Context) =
             Room.databaseBuilder(context.applicationContext, articleDatabase::class.java,
-                "article_db.db").build()
+                "article_db.db").fallbackToDestructiveMigration().build()
         operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
             instance ?: createDatabase(context).also {
                 instance = it
